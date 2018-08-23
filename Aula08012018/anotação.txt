@@ -1,0 +1,6 @@
+update itempedido, produto set itempedido.total_item=itempedido.quant*produto.valunit 
+ where itempedido.codprod=produto.codprod;
+ 
+alter table itempedido add total_item decimal(8,2);
+
+select pedido.numped, sum(itempedido.total_item) as total_pedido from pedido, itempedido where (pedido.numped=itempedido.numped) group by numped;
